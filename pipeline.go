@@ -7,16 +7,19 @@ import (
 	"sync"
 )
 
+// Pipeline represents a pipeline consisting of a Generator, some Filters and a Consumer.
 type Pipeline struct {
 	Generator generator.Generator
 	Filters   []filter.Filter
 	Consumer  consumer.Consumer
 }
 
+// RunPipeline executes a pipeline with the given components and returns the result.
 func RunPipeline(g generator.Generator, c consumer.Consumer, fs ...filter.Filter) int {
 	return NewPipeline(g, c, fs...).Run()
 }
 
+// NewPipeline creates a pipeline with the given components.
 func NewPipeline(g generator.Generator, c consumer.Consumer, fs ...filter.Filter) *Pipeline {
 	return &Pipeline{
 		Generator: g,
@@ -25,6 +28,7 @@ func NewPipeline(g generator.Generator, c consumer.Consumer, fs ...filter.Filter
 	}
 }
 
+// Run the pipeline.
 func (p *Pipeline) Run() int {
 	var wg sync.WaitGroup
 	wg.Add(len(p.Filters) + 2)
