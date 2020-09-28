@@ -34,7 +34,7 @@ func (p *Pipeline) Run() int {
 	wg.Add(len(p.Filters) + 2)
 
 	// Create the 'done' channel that indicates success to the generator.
-	done := make(chan bool)
+	done := make(chan bool, 1)
 	defer close(done)
 
 	// Create a list for all channels
@@ -54,7 +54,7 @@ func (p *Pipeline) Run() int {
 		// Create the output channel
 		channels[i+1] = make(chan int)
 
-		// Copy i to local scope to avoid it being changed before the filter starts
+		// Copy i to local scope to avoid it changing before the filter starts
 		j := i
 
 		// Run the filter in a goroutine
