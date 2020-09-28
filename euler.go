@@ -49,7 +49,7 @@ var problems = []func() int{
 	// Problem 5
 	func() int {
 		// the step size is the product of all primes
-		step := 1*2*3*5*7*11*13*17*19
+		step := 1 * 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19
 		return RunPipeline(
 			generator.NewSequence(step, math.MaxInt64, step),
 			consumer.NewMiner(true),

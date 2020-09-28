@@ -4,7 +4,7 @@ import "git.slxh.eu/go/euler/filter"
 
 // Prime generates a sequence of numbers.
 type Prime struct {
-	n, max int
+	n, max      int
 	knownPrimes []int
 }
 

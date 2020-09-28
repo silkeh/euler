@@ -3,7 +3,7 @@ package consumer
 // Factorizer sums the received values.
 // It is not thread-safe.
 type Factorizer struct {
-	n int
+	n    int
 	last int
 }
 
@@ -15,7 +15,7 @@ func NewFactorizer(n int) Consumer {
 // Run against an input channel until it is closed..
 func (s *Factorizer) Run(in <-chan int, done chan<- bool) {
 	for v := range in {
-		for s.n % v == 0 {
+		for s.n%v == 0 {
 			s.n /= v
 			s.last = v
 		}
