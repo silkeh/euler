@@ -22,7 +22,7 @@ func (s *Prime) Run(out chan<- int, done <-chan bool) {
 
 	n := 1
 	out <- 2
-	for i := 3; n <= s.n && i <= s.max; i += 2 {
+	for i := 3; n < s.n && i <= s.max; i += 2 {
 		select {
 		case <-done:
 			return
