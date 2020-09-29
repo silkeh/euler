@@ -84,6 +84,7 @@ var problems = []func() int{
 		)
 	},
 
+	// Problem 8
 	func() int {
 		digits := []byte("73167176531330624919225119674426574742355349194934" +
 			"96983520312774506326239578318016984801869478851843" +
@@ -110,6 +111,18 @@ var problems = []func() int{
 			consumer.NewMaxer(false),
 			filter.NewSequenceMultiplier(13),
 		)
+	},
+
+	// Problem 9
+	func() int {
+		return 0
+	},
+
+	// Problem 10
+	func() int {
+		return RunPipeline(
+			generator.NewPrime(math.MaxInt64, 2000000),
+			consumer.NewSummer())
 	},
 }
 
