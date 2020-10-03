@@ -1,0 +1,10 @@
+language: go
+
+go:
+  - stable
+
+script:
+  - go test -v ./...
+  - test -z "$(go fmt ./...)"
+  - go get -u golang.org/x/lint/golint
+  - golint -set_exit_status ./...
