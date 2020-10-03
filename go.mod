@@ -1,3 +1,3 @@
-module git.slxh.eu/go/euler
+module gitlab.com/silkeh/euler
 
 go 1.15

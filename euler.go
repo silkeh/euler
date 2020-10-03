@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"git.slxh.eu/go/euler/consumer"
-	"git.slxh.eu/go/euler/filter"
-	"git.slxh.eu/go/euler/generator"
+	"github.com/silkeh/euler/consumer"
+	"github.com/silkeh/euler/filter"
+	"github.com/silkeh/euler/generator"
 	"math"
 	"time"
 )
