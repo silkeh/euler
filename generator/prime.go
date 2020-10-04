@@ -1,6 +1,6 @@
 package generator
 
-import "git.slxh.eu/go/euler/filter"
+import "github.com/silkeh/euler/filter"
 
 // Prime generates a sequence of numbers.
 type Prime struct {
