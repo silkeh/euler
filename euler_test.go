@@ -2,13 +2,34 @@ package main
 
 import (
 	"testing"
-	"time"
 )
 
+var answers = []int{
+	// 1
+	233168,
+	4613732,
+	6857,
+	906609,
+	232792560,
+	25164150,
+	104743,
+	23514624000,
+	0, // skipped
+	// 10
+	142913828922,
+	70600674,
+}
+
 func Test(t *testing.T) {
-	for i, p := range problems {
-		start := time.Now()
-		t.Logf("Problem %03d: %v (%s)\n", i+1, p(), time.Since(start))
+	if len(problems) > len(answers) {
+		t.Errorf("Missing %v answer(s)", len(problems)-len(answers))
+	}
+
+	for i, answer := range answers {
+		result := problems[i]()
+		if answer != result {
+			t.Errorf("Incorrect solution for problem %03d: expected %v, got %v", i+1, answer, result)
+		}
 	}
 }
 
