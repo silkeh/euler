@@ -1,5 +1,7 @@
 package generator
 
+// DigitReader is a Generator that sends a byte slice
+// containing ASCII numbers in sequence.
 type DigitReader struct {
 	givenDigits []byte
 }
