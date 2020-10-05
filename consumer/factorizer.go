@@ -14,6 +14,7 @@ func NewFactorizer(n int) Consumer {
 
 // Run against an input channel until it is closed..
 func (s *Factorizer) Run(in <-chan int, done chan<- bool) {
+	defer channelCleanup(in, done)
 	for v := range in {
 		for s.n%v == 0 {
 			s.n /= v
@@ -21,7 +22,7 @@ func (s *Factorizer) Run(in <-chan int, done chan<- bool) {
 		}
 
 		if s.n <= 1 {
-			done <- true
+			return
 		}
 	}
 }

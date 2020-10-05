@@ -18,11 +18,12 @@ func NewMiner(stopOnFirst bool) Consumer {
 
 // Run against an input channel until it is closed..
 func (m *Miner) Run(in <-chan int, done chan<- bool) {
+	defer channelCleanup(in, done)
 	for v := range in {
 		if v < m.min {
 			m.min = v
 			if m.stopFirst {
-				done <- true
+				return
 			}
 		}
 	}
