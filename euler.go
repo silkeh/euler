@@ -23,7 +23,7 @@ var problems = []func() int{
 	// Problem 2
 	func() int {
 		return RunPipeline(
-			generator.NewFibonacci(math.MaxInt64, 4000000),
+			generator.NewFibonacci(0, 1, math.MaxInt64, 4000000),
 			consumer.NewSummer(),
 			filter.NewEven(),
 		)
