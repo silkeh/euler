@@ -116,7 +116,18 @@ var problems = []func() int{
 
 	// Problem 9
 	func() int {
-		return 0
+		return RunPipeline(
+			generator.NewDoubleSequence(1, 100, 1),
+			consumer.NewMaxer(true),
+			filter.NewCoprime(),
+			filter.NewPythagoreanTripleter(25),
+			filter.NewConditional(
+				filter.NewProducter(3),
+				filter.NewSequenceSum(3),
+				condition.NewEqual(1000),
+				1,
+			),
+		)
 	},
 
 	// Problem 10
