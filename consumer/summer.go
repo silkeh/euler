@@ -13,6 +13,7 @@ func NewSummer() Consumer {
 
 // Run against an input channel until it is closed..
 func (s *Summer) Run(in <-chan int, done chan<- bool) {
+	defer channelCleanup(in, done)
 	for v := range in {
 		s.sum += v
 	}

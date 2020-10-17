@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/silkeh/euler/consumer"
 	"github.com/silkeh/euler/filter"
+	"github.com/silkeh/euler/filter/condition"
 	"github.com/silkeh/euler/generator"
 	"math"
 	"time"
@@ -154,6 +155,21 @@ var problems = []func() int{
 			consumer.NewMaxer(false),
 			filter.NewSelectDigit(grid, 2),
 			filter.NewProducter(4),
+		)
+	},
+
+	// Problem 12
+	func() int {
+		return RunPipeline(
+			generator.NewSequence(1, 100000, 1),
+			consumer.NewMaxer(true),
+			filter.NewCumSummer(),
+			filter.NewConditional(
+				filter.NewScale(1),
+				filter.NewDivisorCount(),
+				condition.NewGreaterEqual(500),
+				1,
+			),
 		)
 	},
 }
