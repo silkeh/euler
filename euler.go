@@ -172,6 +172,15 @@ var problems = []func() int{
 			),
 		)
 	},
+
+	// problem 15
+	func() int {
+		return RunPipeline(
+			generator.NewSequence(40,20,-20),
+			consumer.NewMiner(false),
+			filter.NewBinomialDistribution(),
+		)
+	},
 }
 
 func main() {
