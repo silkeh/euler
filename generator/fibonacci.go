@@ -2,13 +2,13 @@ package generator
 
 // Fibonacci generates the Fibonacci sequence.
 type Fibonacci struct {
-	n, max int
+	f0, f1, n, max int
 }
 
 // NewFibonacci creates a Fibonacci Generator.
 // The generates either `n` numbers, or until `max` is exceeded (whichever comes first).
-func NewFibonacci(n, max int) Generator {
-	return &Fibonacci{n: n, max: max}
+func NewFibonacci(f0, f1, n, max int) Generator {
+	return &Fibonacci{f0: f0, f1: f1, n: n, max: max}
 }
 
 // Run against a channel.
@@ -16,21 +16,20 @@ func NewFibonacci(n, max int) Generator {
 func (f *Fibonacci) Run(out chan<- int, done <-chan bool) {
 	defer close(out)
 
-	prev0 := 0
-	prev1 := 1
+	out <- f.f0
 	for i := 0; i < f.n; i++ {
 		select {
 		case <-done:
 			return
 		default:
-			out <- prev1
+			out <- f.f1
 
-			next := prev0 + prev1
+			next := f.f0 + f.f1
 			if next > f.max {
 				return
 			}
 
-			prev0, prev1 = prev1, next
+			f.f0, f.f1 = f.f1, next
 		}
 	}
 }
